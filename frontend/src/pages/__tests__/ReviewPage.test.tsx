@@ -1,20 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { axe } from 'jest-axe'
 import { ReviewPage } from '../ReviewPage'
 import type { useReviewStatus } from '../../hooks/useReviewStatus'
 import { Review } from '../../types'
-
-// Register jest-axe's matcher with Vitest's types. The generic default
-// must match Vitest's own Assertion declaration for the interfaces to merge.
-declare module 'vitest' {
-  interface Assertion<T = any> {
-    toHaveNoViolations(): T
-  }
-}
-
-expect.extend(toHaveNoViolations)
 
 type ReviewStatus = ReturnType<typeof useReviewStatus>
 
